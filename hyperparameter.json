@@ -1,0 +1,8 @@
+{
+    "expname" : "Adam optimizer exp1",
+    "seed" : 526,
+    "batch_size" : 16,
+    "lrate" : 1e-3,
+    "nepoch" : 200,
+    "weight_decay" : 0.3
+}
