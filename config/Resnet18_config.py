@@ -9,11 +9,7 @@ class AdamConfig(BaseConfig):
     '''
     def __init__(self):
         self.expname = 'Default'
-        self.seed = 1024
-        self.batch_size = 4
-        self.lrate = 1e-3
-        self.nepoch = 10
-        self.weight_decay = 0
+
         
     # ==== Getter ====
     @property
@@ -93,5 +89,7 @@ class AdamConfig(BaseConfig):
         self.seed = obj['seed']
         self.lrate = obj['lrate']
         self.weight_decay = obj['weight_decay']
+        self.nepoch = obj['nepoch']
+        self.batch_size = obj['batch_size']
         print('All hyperparameters have been read in')
         return self

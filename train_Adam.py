@@ -65,8 +65,40 @@ if __name__ == "__main__":
         os.mkdir(TB_PATH)
     writer = SummaryWriter(os.path.join(TB_PATH, myconfig.expname))
     # ==== Training ====
-
+    loss_list = []
     for epoch in range(myconfig.nepoch):
         print(f'-----Epoch : {epoch}-----')
-        
+        loss = 0.0
+        mytrange = tqdm(enumerate(trainloader), total=len(trainloader), desc='Train')
+        for i,(inputs, labels) in mytrange:
+            inputs = inputs.to(DEVICE)
+            labels = labels.to(DEVICE)
+            # zero the parameter gradients
+            optimizer.zero_grad()
+            # forward + backward + optimize
+            outputs = resent18(inputs)
+            batch_loss = criterion(outputs, labels)
+            batch_loss.backward()
+            optimizer.step()
+            # print statistics
+            loss += batch_loss.item()
+            mytrange.set_postfix(loss=loss / (i+1))
+        # ==== Log traning loss of an epoch to tensorboard ====
+        epoch_loss = loss/len(mytrange)
+        loss_list.append(epoch_loss)
+        writer.add_scalar('Loss/train', epoch_loss, epoch)
+    # ==== Save model ====
+    torch.save(resent18.state_dict(), PATH)
+    # ==== Add hyperparameters and min loss to tensorboard ====
+    hparams = {
+        'seed' : myconfig.seed,
+        'lrate' : myconfig.lrate,
+        'batch_size' : myconfig.batch_size,
+        'epochs' : myconfig.nepoch,
+        'weight_decay' : myconfig.weight_decay
+    }
+    metric = {'min_loss/train':min(loss_list)}
+    writer.add_hparams(hparams, metric)
+    # ==== Close tensorboard writer ====
+    writer.close()
 
