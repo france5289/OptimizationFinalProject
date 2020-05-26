@@ -1,7 +1,7 @@
 import json 
 import os
 
-from baseconfig import BaseConfig
+from config.baseconfig import BaseConfig
 
 class AdamConfig(BaseConfig):
     '''
