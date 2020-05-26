@@ -11,6 +11,7 @@ class AdamConfig(BaseConfig):
         self.expname = 'Default'
         self.seed = 1024
         self.lrate = 1e-3
+        self.nepoch = 10
         self.weight_decay = 0
         
     # ==== Getter ====
@@ -23,6 +24,9 @@ class AdamConfig(BaseConfig):
     @property
     def lrate(self):
         return self._lrate
+    @property
+    def nepoch(self):
+        return self._nepoch
     @property
     def weight_decay(self):
         return self._weight_decay
@@ -42,6 +46,11 @@ class AdamConfig(BaseConfig):
         if type(value) is not float:
             raise ValueError('learning rate should be a float')
         self._lrate = value
+    @nepoch.setter
+    def nepoch(self, value):
+        if type(value) is not int:
+            raise ValueError('Num of epoch should be an integer')
+        self._nepoch = value
     @weight_decay.setter
     def weight_decay(self, value):
         self._weight_decay = value
