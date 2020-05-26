@@ -4,3 +4,4 @@ Ranger-Deep-Learning-Optimizer/
 data/
 config/__pycache__/
 Cifar10_model/
+exp_log/
