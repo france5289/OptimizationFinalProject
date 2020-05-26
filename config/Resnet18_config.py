@@ -10,6 +10,7 @@ class AdamConfig(BaseConfig):
     def __init__(self):
         self.expname = 'Default'
         self.seed = 1024
+        self.batch_size = 4
         self.lrate = 1e-3
         self.nepoch = 10
         self.weight_decay = 0
@@ -21,6 +22,9 @@ class AdamConfig(BaseConfig):
     @property
     def seed(self):
         return self._seed 
+    @property
+    def batch_size(self):
+        return self._batch_size
     @property
     def lrate(self):
         return self._lrate
@@ -41,6 +45,11 @@ class AdamConfig(BaseConfig):
         if type(value) is not int:
             raise ValueError('Random seed should be an integer')
         self._seed = value
+    @batch_size.setter
+    def batch_size(self, value):
+        if type(value) is not int:
+            raise ValueError('Batch Size should be an integer')
+        self._batch_size = value
     @lrate.setter
     def lrate(self, value):
         if type(value) is not float:

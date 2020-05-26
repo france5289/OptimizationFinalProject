@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # Download, Read and Pre-process datasets
     print('Preparing Training CIFAR-10 dataset')
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=16, shuffle=True, num_workers=WORKERS)
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size=myconfig.batch_size, shuffle=True, num_workers=WORKERS)
     print('Training and Testing dataset is ready...')
     # ==== Load ResNet model ====
     print('Loading ResNet-18 Model')
@@ -68,4 +68,5 @@ if __name__ == "__main__":
 
     for epoch in range(myconfig.nepoch):
         print(f'-----Epoch : {epoch}-----')
+        
 
