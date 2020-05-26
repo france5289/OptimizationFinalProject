@@ -1,14 +1,15 @@
 # Train ResNet-18 wtih Adam Optimizer
 # Dataset : CIFAR-10
 
+import os
+
 import torch
 import torch.optim as optim
 import torchvision
 import torchvision.models as models
 import torchvision.transforms as transforms
-import os 
-from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
+from tqdm import tqdm
 
 from config.Resnet18_config import AdamConfig
 
@@ -40,13 +41,6 @@ train_transform = transforms.Compose(
     ]
 )
 
-test_transform = transforms.Compose(
-    [
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ]
-)
-
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 if __name__ == "__main__":
@@ -54,11 +48,9 @@ if __name__ == "__main__":
     myconfig = AdamConfig.load_from_json(HPARAMS_PATH)
     SetupSEED(myconfig.seed)
     # Download, Read and Pre-process datasets
-    print('Preparing Training and Testing CIFAR-10 dataset')
+    print('Preparing Training CIFAR-10 dataset')
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=16, shuffle=True, num_workers=WORKERS)
-    testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=test_transform)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=16, shuffle=False, num_workers=WORKERS)
     print('Training and Testing dataset is ready...')
     # ==== Load ResNet model ====
     print('Loading ResNet-18 Model')
@@ -73,4 +65,7 @@ if __name__ == "__main__":
         os.mkdir(TB_PATH)
     writer = SummaryWriter(os.path.join(TB_PATH, myconfig.expname))
     # ==== Training ====
+
+    for epoch in range(myconfig.nepoch):
+        print(f'-----Epoch : {epoch}-----')
 
