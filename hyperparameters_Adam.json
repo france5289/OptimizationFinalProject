@@ -1,5 +1,5 @@
 {
-    "expname" : "Adam optimizer exp3",
+    "expname" : "Adam_optimizer_exp1",
     "seed" : 526,
     "batch_size" : 32,
     "lrate" : 1e-3,

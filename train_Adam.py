@@ -65,6 +65,7 @@ if __name__ == "__main__":
     writer = SummaryWriter(os.path.join(TB_PATH, myconfig.expname))
     # ==== Training ====
     loss_list = []
+    counter = 0
     for epoch in range(myconfig.nepoch):
         print(f'-----Epoch : {epoch}-----')
         loss = 0.0
@@ -81,11 +82,14 @@ if __name__ == "__main__":
             optimizer.step()
             # print statistics
             loss += batch_loss.item()
-            mytrange.set_postfix(loss=loss / (i+1))
-        # ==== Log traning loss of an epoch to tensorboard ====
+            mytrange.set_postfix(loss=batch_loss.item())
+            # ==== Log batch loss to tensorboard ====
+            counter += i
+            writer.add_scalar('Batch_Loss/train', batch_loss.item(), counter)
+        # ==== Log traning loss of an epoch ====
         epoch_loss = loss/len(mytrange)
+        writer.add_scalar('Epoch_Loss/train', epoch_loss, epoch)
         loss_list.append(epoch_loss)
-        writer.add_scalar('Loss/train', epoch_loss, epoch)
     # ==== Save model ====
     torch.save(resent18.state_dict(), SAVE_PATH)
     # ==== Add hyperparameters and min loss to tensorboard ====
