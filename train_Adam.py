@@ -15,8 +15,7 @@ from config.Resnet18_config import AdamConfig
 
 CWD = os.getcwd()
 HPARAMS_PATH = os.path.join(CWD, 'hyperparameters.json')
-PATH = './Cifar10_model/Resnet18_Adam.pth'
-TB_PATH = os.path.join(CWD,'exp_log','Adam')
+TB_PATH = os.path.join(CWD,'exp_log')
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 WORKERS = os.cpu_count() // 2
 
@@ -44,9 +43,10 @@ train_transform = transforms.Compose(
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 if __name__ == "__main__":
-    # Read model config and setup random seed 
+    # Read model config, setup random seed and model save path
     myconfig = AdamConfig.load_from_json(HPARAMS_PATH)
     SetupSEED(myconfig.seed)
+    SAVE_PATH = os.path.join(CWD, 'Cifar10_model', myconfig.expname,'.pth')
     # Download, Read and Pre-process datasets
     print('Preparing Training CIFAR-10 dataset')
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
@@ -88,7 +88,7 @@ if __name__ == "__main__":
         loss_list.append(epoch_loss)
         writer.add_scalar('Loss/train', epoch_loss, epoch)
     # ==== Save model ====
-    torch.save(resent18.state_dict(), PATH)
+    torch.save(resent18.state_dict(), SAVE_PATH)
     # ==== Add hyperparameters and min loss to tensorboard ====
     hparams = {
         'seed' : myconfig.seed,
