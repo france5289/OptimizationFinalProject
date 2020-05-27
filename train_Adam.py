@@ -14,7 +14,7 @@ from tqdm import tqdm
 from config.Resnet18_config import AdamConfig
 
 CWD = os.getcwd()
-HPARAMS_PATH = os.path.join(CWD, 'hyperparameters.json')
+HPARAMS_PATH = os.path.join(CWD, 'hyperparameters_Adam.json')
 TB_PATH = os.path.join(CWD,'exp_log')
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 WORKERS = os.cpu_count() // 2
