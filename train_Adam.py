@@ -40,7 +40,6 @@ train_transform = transforms.Compose(
     ]
 )
 
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 if __name__ == "__main__":
     # Read model config, setup random seed and model save path
