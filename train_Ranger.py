@@ -45,7 +45,7 @@ if __name__ == "__main__":
     # Read model config, setup random seed and model save path
     myconfig = RangerConfig.load_from_json(HPARAMS_PATH)
     SetupSEED(myconfig.seed)
-    SAVE_PATH = os.path.join(CWD, 'Cifar10_model', myconfig.expname,'.pth')
+    SAVE_PATH = os.path.join(CWD, 'Cifar10_model', myconfig.expname + '.pth')
     # Download, Read and Pre-process datasets
     print('Preparing Training CIFAR-10 dataset')
     trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
