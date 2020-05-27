@@ -17,7 +17,7 @@ class AdamConfig(BaseConfig):
         '''
         self.expname = 'Default'
         self.seed = -1
-        self.batch_size = -1.0
+        self.batch_size = 0
         self.lrate = -1.0
         self.nepoch = 0
         self.weight_decay = -1.0
@@ -121,7 +121,7 @@ class RangerConfig(BaseConfig):
         '''
         self.expname = 'Default'
         self.seed = -1
-        self.batch_size = -1.0
+        self.batch_size = 0
         self.lrate = -1.0
         self.nepoch = 0
         self.weight_decay = -1.0
