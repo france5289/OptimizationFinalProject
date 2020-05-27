@@ -1,0 +1,13 @@
+{
+    "expname" : "Ranger_exp1",
+    "seed" : 526,
+    "batch_size" : 32,
+    "lrate" : 1e-3,
+    "nepoch" : 200,
+    "weight_decay" : 0,
+    "k" : 6,
+    "N_sma_threshold" : 5,
+    "eps" : 1e-5,
+    "use_gc" : true,
+    "gc_conv_only" : false
+}
