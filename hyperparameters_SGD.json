@@ -1,0 +1,8 @@
+{
+    "expname" : "SGD_optimizer_exp1",
+    "seed" : 526,
+    "batch_size" : 32,
+    "lrate" : 0.001,
+    "nepoch" : 200,
+    "weight_decay" : 0
+}
