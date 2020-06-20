@@ -16,7 +16,7 @@ Ranger optimzer v.s other optimizer on ResNet-18 with CIFAR-10 dataset
 
 ## Usage
 ### Development environment setup
-> Note : you should install *Ranger* from its official github page
+> Note : you should install *Ranger* from its official github page first
 
 > It's recommended to use a python virtual environments 
 
