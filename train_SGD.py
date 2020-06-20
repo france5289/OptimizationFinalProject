@@ -1,6 +1,5 @@
-# Train ResNet-18 wtih Adam Optimizer
+# Train ResNet-18 with SGD Optimizer
 # Dataset : CIFAR-10
-
 import os
 
 import torch
@@ -11,14 +10,13 @@ import torchvision.transforms as transforms
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from config.Resnet18_config import AdamConfig
+from config.Resnet18_config import SGDConfig
 
 CWD = os.getcwd()
-HPARAMS_PATH = os.path.join(CWD, 'hyperparameters_Adam.json')
+HPARAMS_PATH = os.path.join(CWD, 'hyperparameters_SGD.json')
 TB_PATH = os.path.join(CWD,'exp_log')
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 WORKERS = os.cpu_count() // 2
-
 
 def SetupSEED(seed):
     '''
@@ -40,10 +38,9 @@ train_transform = transforms.Compose(
     ]
 )
 
-
 if __name__ == "__main__":
     # Read model config, setup random seed and model save path
-    myconfig = AdamConfig.load_from_json(HPARAMS_PATH)
+    myconfig = SGDConfig.load_from_json(HPARAMS_PATH)
     SetupSEED(myconfig.seed)
     SAVE_PATH = os.path.join(CWD, 'Cifar10_model', myconfig.expname + '.pth')
     # Download, Read and Pre-process datasets
@@ -58,7 +55,7 @@ if __name__ == "__main__":
     resent18.to(DEVICE)
     # ==== Define Loss function and Adam Optimizer ====
     criterion = torch.nn.CrossEntropyLoss()
-    optimizer = optim.Adam(resent18.parameters(), lr=myconfig.lrate, weight_decay=myconfig.weight_decay)
+    optimizer = optim.SGD(resent18.parameters(), lr=myconfig.lrate, weight_decay=myconfig.weight_decay)
     # ==== Setup tensorboard summary writer ====
     if not os.path.exists(TB_PATH):
         os.mkdir(TB_PATH)
