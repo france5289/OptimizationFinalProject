@@ -66,17 +66,17 @@ All tensorboard event files will stored under `/exp_log` by default. The filenam
 - lrate = { 0.1, 0.03, 0.01, 0.003 }
 - SGD with momentum : 0.9
 
-|   Expname   | lrate | min_train_loss | Test Acc  |
-|:-----------:|:-----:|:--------------:|:---------:|
-|  SGD_exp1   |  0.1  |     0.0319     |   79.98   |
-|  SGD_exp2   | 0.01  |     0.0697     |   76.0    |
-|  SGD_exp3   | 0.03  |     0.0346     |   77.79   |
-|  SGD_exp4   | 0.003 |     0.2235     |   73.45   |
-|  Adam_exp1  |  0.1  |     0.3428     |   76.92   |
-|  Adam_exp2  | 0.01  |     0.0604     |   82.83   |
-|  Adam_exp3  | 0.03  |     0.0888     |   80.81   |
-|  Adam_exp4  | 0.003 |     0.051      |   82.46   |
-| Ranger_exp1 |  0.1  |     0.0712     |   82.71   |
-| Ranger_exp2 | 0.01  |     0.0513     |   83.93   |
-| Ranger_exp3 | 0.03  |     0.0563     | **83.96** |
-| Ranger_exp4 | 0.003 |     0.0476     | **83.96** |
+|   Expname   | lrate | min_train_loss     | Test Acc  |
+|:-----------:|:-----:|:------------------:|:---------:|
+|  SGD_exp1   |  0.1  |     **0.0319**     |   79.98   |
+|  SGD_exp2   | 0.01  |     0.0697         |   76.0    |
+|  SGD_exp3   | 0.03  |     0.0346         |   77.79   |
+|  SGD_exp4   | 0.003 |     0.2235         |   73.45   |
+|  Adam_exp1  |  0.1  |     0.3428         |   76.92   |
+|  Adam_exp2  | 0.01  |     0.0604         |   82.83   |
+|  Adam_exp3  | 0.03  |     0.0888         |   80.81   |
+|  Adam_exp4  | 0.003 |     0.051          |   82.46   |
+| Ranger_exp1 |  0.1  |     0.0712         |   82.71   |
+| Ranger_exp2 | 0.01  |     0.0513         |   83.93   |
+| Ranger_exp3 | 0.03  |     0.0563         | **83.96** |
+| Ranger_exp4 | 0.003 |     0.0476         | **83.96** |
