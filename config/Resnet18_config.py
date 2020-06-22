@@ -125,6 +125,7 @@ class SGDConfig(BaseConfig):
         self.lrate = -1.0
         self.nepoch = 0
         self.weight_decay = -1.0
+        self.momentum = -1.0
 
 
     # ==== Getter ====
@@ -146,6 +147,9 @@ class SGDConfig(BaseConfig):
     @property
     def weight_decay(self):
         return self._weight_decay
+    @property
+    def momentum(self):
+        return self._momentum
     # ==== Setter ====
     @expname.setter
     def expname(self, value):
@@ -175,7 +179,13 @@ class SGDConfig(BaseConfig):
     @weight_decay.setter
     def weight_decay(self, value):
         self._weight_decay = value
-    
+    @momentum.setter
+    def momentum(self, value):
+        if type(value) is not float:
+            raise ValueError('Momentum should be a float')
+        self._momentum = value
+
+
     @classmethod
     def load_from_json(cls, jsonpath):
         '''
@@ -207,6 +217,7 @@ class SGDConfig(BaseConfig):
         self.weight_decay = obj['weight_decay']
         self.nepoch = obj['nepoch']
         self.batch_size = obj['batch_size']
+        self.momentum = obj['momentum']
         print('All hyperparameters have been read in')
         return self
 

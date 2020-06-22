@@ -1,8 +1,9 @@
 {
-    "expname" : "SGD_optimizer_exp1",
+    "expname" : "SGD_optimizer_exp4",
     "seed" : 526,
-    "batch_size" : 32,
-    "lrate" : 0.001,
+    "batch_size" : 128,
+    "lrate" : 0.003,
     "nepoch" : 200,
-    "weight_decay" : 0
+    "weight_decay" : 0,
+    "momentum" : 0.9
 }
