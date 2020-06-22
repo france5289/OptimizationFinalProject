@@ -45,6 +45,8 @@ if __name__ == "__main__":
     # Read model config, setup random seed and model save path
     myconfig = AdamConfig.load_from_json(HPARAMS_PATH)
     SetupSEED(myconfig.seed)
+    if not os.path.exists(os.path.join(CWD, 'Cifar10_model')):
+        os.mkdir(os.path.join(CWD, 'Cifar10_model'))
     SAVE_PATH = os.path.join(CWD, 'Cifar10_model', myconfig.expname + '.pth')
     # Download, Read and Pre-process datasets
     print('Preparing Training CIFAR-10 dataset')
